@@ -36,3 +36,20 @@ function agregarAmigo(){
 } // POSIBLES  ELEMENTOS A MEJORAR: HACER UNA VALIDACIÓN PARA QUE NO SE IMPRIMA UNDIFINED CUANDO NO SE ESCRIBE ALGO
 
 //console.log(amigos);
+
+
+function sortearAmigo(){
+    
+    if(rango < 2 ){
+        alert("Ingrese 2 o más nombres!");
+        return;
+    }else{
+        
+        let sorteo = Math.floor(Math.random()*rango) + 1;
+        console.log(sorteo);
+        let amigoSorteado = document.getElementById("resultado");
+        amigoSorteado.innerHTML = `El amigo sorteado es: ${amigos[sorteo -1]}`;
+        
+
+    }
+}
