@@ -1,15 +1,24 @@
 // El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
 let amigos = [];
+let arregloAux = [];
 let rango = amigos.length;
 console.log(amigos);
 
+
+function asignarTextoAEtiqueta(ID, texto){
+    let etiquetaHTML = document.getElementById(ID);
+    etiquetaHTML.innerHTML = texto ;
+    return;
+}
+
 function imprimirAmigos(){
-    let lista = document.getElementById("listaAmigos");
+
+   // asignarTextoAEtiqueta("listaAmigos", "");
+   let lista = document.getElementById("listaAmigos");
     lista.innerHTML = "";
     
     for( let i = 0; i < rango; i++){
         let pos = document.createElement("li");
-        //lista.appendChild(pos);
         pos.innerHTML = amigos[i];
 
         lista.appendChild(pos);
@@ -39,17 +48,24 @@ function agregarAmigo(){
 
 
 function sortearAmigo(){
+    let sorteo = Math.floor(Math.random()*rango);
     
     if(rango < 2 ){
-        alert("Ingrese 2 o más nombres!");
+       
+       asignarTextoAEtiqueta("resultado", "Ingrese 2 o más nombres para iniciar el sorteo");
         return;
+    }else if(arregloAux.length == rango){
+        asignarTextoAEtiqueta("resultado", "Ya se sortearon todos los nombres");
     }else{
-        
-        let sorteo = Math.floor(Math.random()*rango) + 1;
-        console.log(sorteo);
-        let amigoSorteado = document.getElementById("resultado");
-        amigoSorteado.innerHTML = `El amigo sorteado es: ${amigos[sorteo -1]}`;
-        
 
+        if(arregloAux.includes(sorteo))
+            return sortearAmigo();
+        else{
+            arregloAux.push(sorteo);
+            console.log(arregloAux);
+             asignarTextoAEtiqueta("resultado", `El amigo sorteado es: ${amigos[sorteo]}`);
+         
+        }
     }
 }
+
